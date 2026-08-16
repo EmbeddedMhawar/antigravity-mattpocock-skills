@@ -1,0 +1,13 @@
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Temporary & Lock files
+.mattpocock_plugin_last_sync
+/tmp/
+
+# Logs
+*.log

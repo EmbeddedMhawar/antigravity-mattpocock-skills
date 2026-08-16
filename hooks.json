@@ -1,0 +1,11 @@
+{
+  "mattpocock-auto-updater": {
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "./scripts/auto-update.sh",
+        "timeout": 5
+      }
+    ]
+  }
+}

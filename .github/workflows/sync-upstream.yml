@@ -1,0 +1,47 @@
+name: Sync Upstream Skills
+
+on:
+  schedule:
+    # Run every Monday at 00:00 UTC
+    - cron: '0 0 * * 1'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Sync Script
+        run: |
+          chmod +x scripts/*.sh
+          ./scripts/sync.sh
+
+      - name: Check for Changes
+        id: git-check
+        run: |
+          git status --porcelain
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changes_detected=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changes_detected=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Pull Request with Upstream Changes
+        if: steps.git-check.outputs.changes_detected == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(sync): update skills from mattpocock/skills"
+          title: "chore: sync upstream updates from mattpocock/skills"
+          body: |
+            Automated synchronization with upstream [mattpocock/skills](https://github.com/mattpocock/skills).
+            
+            All `SKILL.md` files have been formatted and verified for Google Antigravity compatibility.
+          branch: "sync-upstream-skills"
+          delete-branch: true

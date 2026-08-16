@@ -1,0 +1,21 @@
+{
+  "name": "mattpocock-skills",
+  "version": "1.0.0",
+  "description": "Matt Pocock's engineering workflows (TDD, Grill-Me, Architecture, Bug Diagnosis) packaged for Antigravity with automated upstream sync.",
+  "author": {
+    "name": "Abderrahmane Mhawar",
+    "url": "https://github.com/abderrahmane-mhawar"
+  },
+  "repository": "https://github.com/abderrahmane-mhawar/antigravity-mattpocock-skills",
+  "license": "MIT",
+  "keywords": [
+    "antigravity",
+    "antigravity-plugin",
+    "skills",
+    "matt-pocock",
+    "tdd",
+    "engineering-discipline",
+    "grill-me",
+    "codebase-design"
+  ]
+}
